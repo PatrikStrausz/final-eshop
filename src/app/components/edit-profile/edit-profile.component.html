@@ -1,0 +1,85 @@
+<div class="register-wrapper">
+    <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+        <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Edit profile</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <mat-form-field appearance="fill">
+                <mat-label>E-mail</mat-label>
+                <input matInput required email formControlName="email">
+                <mat-error *ngIf="email.errors?.email || email.errors?.pattern">E-mail is in wrong format</mat-error>            
+      
+              </mat-form-field>
+
+
+              <mat-form-field appearance="fill">
+                <mat-label>Login name</mat-label>
+                <input matInput required formControlName="username">        
+              </mat-form-field>
+
+
+              <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput required [type]="hide ? 'password' : 'text'" formControlName="password">
+                
+                <button type="button" mat-icon-button matSuffix  (click)="hide = !hide" 
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Phone: </mat-label>
+              
+                <input matInput  phone formControlName="phone">
+              </mat-form-field>
+        
+
+      
+
+              
+            <mat-form-field appearance="fill">
+                <mat-label>Line</mat-label>
+                <input matInput  phone formControlName="line">
+              </mat-form-field>
+
+              
+            <mat-form-field appearance="fill">
+                <mat-label>City</mat-label>
+                <input matInput  phone formControlName="city">
+              </mat-form-field>
+
+              
+            <mat-form-field appearance="fill">
+                <mat-label>State</mat-label>
+                <input matInput  phone formControlName="state">
+              </mat-form-field>
+        
+        
+              <mat-form-field appearance="fill">
+                <mat-label>Country</mat-label>
+                <input matInput  phone formControlName="country">
+              </mat-form-field>
+
+              
+            <mat-form-field appearance="fill">
+                <mat-label>Pincode</mat-label>
+                <input matInput  phone formControlName="pincode">
+              </mat-form-field>
+        
+        
+        
+        
+
+      
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button type="submit" mat-stroked-button color="primary"
+             [disabled]="editForm.invalid">Confirm</button>
+        </mat-card-actions>
+        </mat-card>
+    </form>
+  </div>
