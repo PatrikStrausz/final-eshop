@@ -71,70 +71,45 @@ get name(): string {
 }
 
 
-  login(auth: Auth): Observable<boolean | void> {
+  login(auth: Auth): Observable<boolean | any> {
     console.log(auth);
 
- 
-  
-    return this.http
-      .post(this.SERVER_URL + 'login', auth,  {responseType: 'text'})
-    
-      .pipe(
-       
-        map(token => {
-          console.log(token);
-        
+   return this.http.post(this.SERVER_URL + '/login', auth, {responseType: 'text'}).pipe(
+    map(token =>{
+      this.token = token;
+      this.user = auth;
+      this.name = auth.username;
+      this.username = auth.username;
 
-          this.token = token;
-          this.user = auth;
-          this.name = auth.username;
-
-         
-         
-         
-          this.username = auth.username;
-         
-       
-          this.snackbarService.successMessage(`${ auth.username} logged in successfuly`);
-          
-         
-        
-          this.router.navigateByUrl("/");
-          location.reload()
-         
-          return true;
-      }),
-  
-    
-      catchError(error => {
-         
-
-         
-          this.user = null;
+    }),
+    tap(_a =>{
+      this.snackbarService.successMessage(this.name + "  successfully logged in"),      this.router.navigateByUrl('/')
+      .then(() => {
+        location.reload();
+      });
       
-          return this.processHttpError(error);
-      }),
-     
     
+    }),
+ 
+    
+    catchError((error) => this.processHttpError(error))
   )
- ;
+ 
   }
 
   logout(auth:Auth): Observable<any>{
 
   
     let headers = new HttpHeaders().set('Authorization', `${this.token}`);
-
+    
   
     this.snackbarService.successMessage(`${ auth.username} logged out successfuly`);
 
-    return this.http.post(this.SERVER_URL + "logout", auth,{ headers: headers }).pipe(
+    return this.http.post(this.SERVER_URL + "logout", auth,{ headers: headers}).pipe(
       tap((user) => {
-        this.snackbarService.successMessage(
-          'User logged out'
-        );
+       
         this.token = null;
-        localStorage.removeItem('name');
+        localStorage.removeItem('name')
         
        
       }),
@@ -162,8 +137,15 @@ get name(): string {
     )
   }
 
+
+  updateAddress(address:Address):any{
+    return this.http.post(this.SERVER_URL+"/addresses/update", address, {responseType: 'text'}).pipe(
+      catchError((error) => this.processHttpError(error))
+    )
+  }
+
   register(user: User): Observable<User> {
-    return this.http.post<User>(this.SERVER_URL + '/register', user).pipe(
+    return this.http.post<User>(this.SERVER_URL + '/register', user,).pipe(
       tap((user) => {
         this.snackbarService.successMessage(
           'User ' + user.username + ' successfully registered, you can log in now'
@@ -174,7 +156,7 @@ get name(): string {
   }
 
   checkUserConflicts(user:User):any{
-    return this.http.post<any>(this.SERVER_URL + "/user-conflicts", user).pipe(
+    return this.http.post(this.SERVER_URL + "/user-conflicts", user,{responseType: 'text'}).pipe(
       catchError((error) => this.processHttpError(error)))
   }
 
@@ -185,6 +167,17 @@ get name(): string {
       catchError(error => this.processHttpError(error))
     );
 
+  }
+
+  deleteUser(user:User):any{
+    return this.http.post(this.SERVER_URL+"/user/delete",user,{responseType: 'text'}).pipe(
+     tap(_a =>   this.router.navigateByUrl('/login')
+      .then(() => {
+        window.location.reload();
+      })),
+
+      catchError(error => this.processHttpError(error))
+    );
   }
 
   processHttpError(error) {

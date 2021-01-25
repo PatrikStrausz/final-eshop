@@ -1,3 +1,7 @@
+import { ProductService } from 'src/app/services/product.service';
+import { SnackbarService } from './../../services/snackbar.service';
+import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { Auth } from 'src/app/models/auth';
 import { User } from './../../models/user.model';
 import { Component, OnInit } from '@angular/core';
@@ -20,10 +24,13 @@ export class HeaderComponent implements OnInit {
   
   constructor(
     public cartService: CartService,
-    public userService: UserServiceService
+    public userService: UserServiceService,
+    private router:Router,
+    private snackbarService:SnackbarService,
+    private productService:ProductService
   ) {}
 
-
+  categories = []
 
   ngOnInit(): void {
     this.cartService.cartTotal$.subscribe((total) => (this.cartTotal = total));
@@ -37,19 +44,33 @@ export class HeaderComponent implements OnInit {
     this.userService.authState$.subscribe(
       (authState) => (this.authState = authState)
     );
+
+
+    this.productService.getCategories().subscribe(c=>
+      this.categories = c
+    )
+     
   }
 
   logout(auth:Auth): void {
     
-  localStorage.removeItem('name')
-  localStorage.removeItem('token');
+
 
     auth = new Auth(this.activeLogin)
 
  
 
-    this.userService.logout(auth).subscribe();
+    this.userService.logout(auth).subscribe(result =>{
+     
+        this.snackbarService.successMessage(
+          'User logged out'
+        ),
+        location.reload()}
+      
+      );
 
-    location.reload();
+      localStorage.removeItem('name')
+      localStorage.removeItem('token');
+
 }
 }

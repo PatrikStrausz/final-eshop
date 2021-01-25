@@ -8,5 +8,6 @@ export class Address{
         public country: string,
         public phone:string,
         public pincode:number,
+        public user_id:number,
         public id?:number ){}
 }

@@ -25,6 +25,7 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { DeleteProfileComponent } from './components/delete-profile/delete-profile.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     RegisterComponent,
     HomeLayoutComponent,
     EditProfileComponent,
+    DeleteProfileComponent,
     
   ],
   imports: [

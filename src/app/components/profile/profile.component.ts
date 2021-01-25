@@ -1,12 +1,14 @@
+import { DeleteProfileComponent } from './../delete-profile/delete-profile.component';
 import { EditProfileComponent } from './../edit-profile/edit-profile.component';
 import { Address } from './../../models/address.model';
 import { User } from './../../models/user.model';
-import { Auth } from 'src/app/models/auth';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { ResponseModel, UserServiceService } from 'src/app/services/user-service.service';
+
+import {  UserServiceService } from 'src/app/services/user-service.service';
 import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-profile',
@@ -29,6 +31,10 @@ export class ProfileComponent implements OnInit {
               private router: Router,
               public dialog: MatDialog) {
   }
+
+
+
+
 
   ngOnInit(): void {
 
@@ -59,7 +65,15 @@ export class ProfileComponent implements OnInit {
 
 
   deleteProfile(user:User){
+  
 
+    let dialogRef = this.dialog.open(DeleteProfileComponent, {
+      height: '250px',
+      width: '600px',
+      data:{
+        data: user
+      }
+    });
   }
 
   editProfile(){

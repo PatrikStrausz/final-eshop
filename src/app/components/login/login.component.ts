@@ -1,3 +1,4 @@
+import { SnackbarService } from './../../services/snackbar.service';
 
 
 
@@ -18,17 +19,19 @@ export class LoginComponent implements OnInit {
   auth = new Auth();
   
   constructor( private router: Router,
-    private userService:UserServiceService) { }
+    private userService:UserServiceService,
+    private snackbarService:SnackbarService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
     console.log(this.auth)
-    this.userService.login(this.auth).subscribe();
+    this.userService.login(this.auth).subscribe(result =>{
 
-    
-    
+    },
+    error =>{
+      this.snackbarService.errorMessage("Error, wrong password or username")
+    })
   }
-  
 }

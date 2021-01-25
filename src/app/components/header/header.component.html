@@ -13,6 +13,9 @@
       <button mat-button color="primary" aria-label="Logout" (click)="logout()">
         <mat-icon>logout</mat-icon> Logout
       </button>
+      <button mat-button color="primary" aria-label="orders" routerLink="/orders">
+        <mat-icon>store</mat-icon> My orders
+      </button>
     </ng-template>
     <ng-template #elseBlock>
       <button mat-button color="primary" aria-label="Register" routerLink="/register">
@@ -136,15 +139,13 @@
 <!-- NAVIGATION -->
 <nav id="navigation">
   <!-- container -->
-  <div class="container">
+  <div class="container" >
     <!-- responsive-nav -->
-    <div id="responsive-nav">
+    <div id="responsive-nav" >
       <!-- NAV -->
-      <ul class="main-nav nav py-3">
+      <ul class="main-nav nav py-3" >
         <li class="active"><a routerLink="/">Home</a></li>
-        <li><a href="#">Hot Deals</a></li>
-        <li><a href="#">Categories</a></li>
-        <li><a href="#">Contact Us</a></li>
+        <li *ngFor="let categorie of categories"><a href="{{categorie.id}}" >{{categorie.title}}</a></li>
       </ul>
       <!-- /NAV -->
     </div>
