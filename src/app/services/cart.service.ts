@@ -1,3 +1,4 @@
+import { Order } from './../models/order.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
@@ -254,7 +255,7 @@ export class CartService {
     }
   }
 
-  CheckoutFromCart(userId: number) {
+  CheckoutFromCart(userId: number,order:Order, username:string) {
     this.httpClient
       .post(`${this.SERVER_URL}/orders/payment`, null)
       .subscribe((res: { success: Boolean }) => {
@@ -266,7 +267,10 @@ export class CartService {
             .post(`${this.SERVER_URL}/orders/new`, {
               user_id: userId,
               products: this.cartDataClient.prodData,
-            })
+              order,
+              username,
+            }
+            )
             .subscribe((data: OrderConfirmationResponse) => {
               this.orderService.getSingleOrder(data.order_id).then((prods) => {
                 if (data.success) {
@@ -336,6 +340,12 @@ export class CartService {
     };
     this.cartDataObs$.next({ ...this.cartDataServer });
   }
+
+
+
+
+
+  
 }
 
 interface OrderConfirmationResponse {

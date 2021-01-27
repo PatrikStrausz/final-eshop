@@ -1,5 +1,28 @@
+<!-- NAVIGATION -->
+<nav id="navigation">
+  <!-- container -->
+  <div class="container" >
+    <!-- responsive-nav -->
+    <div id="responsive-nav" >
+      <!-- NAV -->
+      <ul class="main-nav nav py-3" >
+        <li class="active" (click)="ss()"><a href="javascript:void(0)">All</a></li>
+        <li (click)="updateCategorie(categorie)" *ngFor="let categorie of categories"> <a href="javascript:void(0)" >{{categorie.title}}</a></li>
+      </ul>
+      <!-- /NAV -->
+    </div>
+    <!-- /responsive-nav -->
+  </div>
+  <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->
+
+
+
 <!-- SECTION -->
 <div class="section">
+
+  
   <!-- container -->
   <div class="container">
     <!-- row -->
@@ -72,8 +95,8 @@
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-4 col-sm-6" *ngFor="let p of products">
-            <div class="card my-2">
-              <img [src]="p.image" alt="{{p.title}}" width="200px" class="card-img-top" style="cursor: pointer;" (click)="selectProduct(p.id)">
+            <div  class="card my-2">
+              <img  [src]="p.image" alt="{{p.title}}" width="200px" class="card-img-top" style="cursor: pointer;" (click)="selectProduct(p.id)">
               <div class="card-header">
                 <div class="card-title">
                   <p>{{p.title | titlecase}}</p>

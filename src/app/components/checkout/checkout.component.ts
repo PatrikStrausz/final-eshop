@@ -1,3 +1,4 @@
+import { Order } from './../../models/order.model';
 import { User } from './../../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { CartModelServer } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-checkout',
@@ -18,6 +20,10 @@ export class CheckoutComponent implements OnInit {
   user_id;
 
   user :User
+
+  order:Order
+
+  username:string
 
   activeLogin:string;
 
@@ -40,9 +46,13 @@ export class CheckoutComponent implements OnInit {
   }
 
   onCheckout() {
+    this.username = localStorage.getItem("name")
+  
+      const orderToSave = new Order("",this.username,this.cartService.cartTotal$.getValue(),false)
+
     if (this.cartTotal > 0) {
       this.spinner.show();
-      this.cartService.CheckoutFromCart(this.user.id);
+      this.cartService.CheckoutFromCart(this.user.id, orderToSave, this.username);
     } else {
       return;
     }

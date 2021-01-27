@@ -1,3 +1,6 @@
+import { HomeComponent } from './../home/home.component';
+import { ProductModelServer } from './../../models/product.model';
+import { Categories } from 'src/app/models/categories.model';
 import { ProductService } from 'src/app/services/product.service';
 import { SnackbarService } from './../../services/snackbar.service';
 import { tap } from 'rxjs/operators';
@@ -30,7 +33,9 @@ export class HeaderComponent implements OnInit {
     private productService:ProductService
   ) {}
 
-  categories = []
+
+
+
 
   ngOnInit(): void {
     this.cartService.cartTotal$.subscribe((total) => (this.cartTotal = total));
@@ -46,9 +51,7 @@ export class HeaderComponent implements OnInit {
     );
 
 
-    this.productService.getCategories().subscribe(c=>
-      this.categories = c
-    )
+   
      
   }
 
@@ -73,4 +76,6 @@ export class HeaderComponent implements OnInit {
       localStorage.removeItem('token');
 
 }
+
+
 }

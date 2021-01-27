@@ -35,5 +35,9 @@ export class ProductService {
     return this.http.get<Array<any>>(this.SERVER_URL + '/categories');
   }
 
+
+  getCategoriesById(id:number):Observable<ProductModelServer[]>{
+    return this.http.get<ProductModelServer[]>(this.SERVER_URL + "/list/products/category/" + id);
+  }
   
 }

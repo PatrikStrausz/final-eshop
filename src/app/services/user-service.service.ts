@@ -1,3 +1,4 @@
+import { ProductModelServer } from './../models/product.model';
 
 
 import { Address } from './../models/address.model';
@@ -32,6 +33,8 @@ username: string;
   userRole: number;
 
   userId:number;
+
+  prod: ProductModelServer[]
 
   constructor(
 
@@ -159,6 +162,8 @@ get name(): string {
     return this.http.post(this.SERVER_URL + "/user-conflicts", user,{responseType: 'text'}).pipe(
       catchError((error) => this.processHttpError(error)))
   }
+
+
 
 
   saveUser(user:User): Observable<User>{
