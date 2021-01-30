@@ -121,6 +121,12 @@ get name(): string {
     
   }
 
+  getAllUsers():Observable<User[]>{
+    return this.http.get<Array<any>>(this.SERVER_URL + "users").pipe(
+      catchError((error) => this.processHttpError(error))
+    )
+  }
+
 
   getUserById(id:number):Observable<User>{
     return this.http.get<User>(this.SERVER_URL+"users/"+id).pipe(

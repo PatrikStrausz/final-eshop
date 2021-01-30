@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   authState: boolean;
   
   
+  
   activeLogin = '';
   
   constructor(

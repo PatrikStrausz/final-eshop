@@ -1,0 +1,132 @@
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab label="User List">
+
+
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="search..." #input>
+          </mat-form-field>
+          <table mat-table [dataSource]="usersDataSource" matSort>
+            <mat-text-column name="id" headerText="ID"></mat-text-column>
+            <ng-container matColumnDef="username">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
+              <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+              <td mat-cell *matCellDef="let user">{{user.email}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+              <td mat-cell *matCellDef="let user" >{{user.role}}</td>
+            </ng-container>
+
+           
+        
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let user">
+                  <button mat-icon-button color="warn" (click)="deleteUser(user)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+          
+            <tr mat-header-row *matHeaderRowDef="columns"></tr>
+            <tr mat-row *matRowDef="let row; columns: columns"></tr>
+          </table>
+      
+
+
+
+
+
+    </mat-tab>
+   
+    <mat-tab label="Products List">
+
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="search..." #input>
+          </mat-form-field>
+
+
+          <table mat-table [dataSource]="productDataSource" matSort>
+            <mat-text-column name="id" headerText="ID"></mat-text-column>
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+              <td mat-cell *matCellDef="let product"> {{product.title}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="image">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Image</th>
+              <td mat-cell *matCellDef="let product">{{product.image}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="images">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Images</th>
+              <td mat-cell *matCellDef="let product" >{{product.images}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                <td mat-cell *matCellDef="let product" >{{product.description}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+                <td mat-cell *matCellDef="let product" >{{product.price}}</td>
+              </ng-container>
+
+              
+              <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
+                <td mat-cell *matCellDef="let product" >{{product.quantity}}</td>
+              </ng-container>
+
+              
+              <ng-container matColumnDef="short_desc">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Short description</th>
+                <td mat-cell *matCellDef="let product" >{{product.short_desc}}</td>
+              </ng-container>
+
+              
+              <ng-container matColumnDef="cat_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Category ID</th>
+                <td mat-cell *matCellDef="let product" >{{product.cat_id}}</td>
+              </ng-container>
+
+
+  
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let product">
+                  <button mat-icon-button color="primary" (click)="editProduct(product)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" (click)="deleteProduct(product)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+           
+        
+        
+          
+            <tr mat-header-row *matHeaderRowDef="columnsProduct"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsProduct"></tr>
+          </table>
+    
+
+
+
+    </mat-tab>
+    <mat-tab label="Orders List">Content 3</mat-tab>
+  </mat-tab-group>
+
+ 
+  

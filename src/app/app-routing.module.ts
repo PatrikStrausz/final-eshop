@@ -1,3 +1,4 @@
+import { AdminComponent } from './components/admin/admin.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgModule } from '@angular/core';
@@ -44,6 +45,9 @@ const routes: Routes = [
       },
       {
         path: 'orders', component: MyOrdersComponent,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin', component: AdminComponent,canActivate:[AuthGuard]
       }
     ]
   },

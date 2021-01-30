@@ -7,6 +7,7 @@ export interface ProductModelServer {
     price: number;
     quantity: number;
     images: string;
+    short_desc:string
   }
   
   
@@ -14,4 +15,21 @@ export interface ProductModelServer {
     count: number;
     products: ProductModelServer[]
   };
+  
+
+  export class Product {
+
+    constructor(
+     public id: number,
+     public title: string,
+     public category: string,
+     public description: string,
+     public image: string,
+     public price: number,
+     public quantity: number,
+     public images: string,
+     public short_desc:string
+    ){}
+  
+  }
   

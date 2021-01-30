@@ -27,6 +27,8 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { DeleteProfileComponent } from './components/delete-profile/delete-profile.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
     EditProfileComponent,
     DeleteProfileComponent,
     MyOrdersComponent,
+    AdminComponent,
+    EditProductComponent,
     
   ],
   imports: [

@@ -27,6 +27,12 @@ export class ProductService {
     );
   }
 
+  deleteProduct(product:ProductModelServer):any{
+    return this.http.post(this.SERVER_URL + "/products/delete", product,{responseType: 'text'})
+  }
+
+
+
   getCategoryName(id:number):Observable<Categories>{
     return this.http.get<Categories>(this.SERVER_URL +"/products/category/"+id);
   }
