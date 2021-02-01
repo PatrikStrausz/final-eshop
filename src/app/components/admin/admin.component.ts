@@ -1,3 +1,6 @@
+import { OrderService } from './../../services/order.service';
+import { Order } from './../../models/order.model';
+import { AddProductComponent } from './../add-product/add-product.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductService } from './../../services/product.service';
 import { ProductModelServer } from './../../models/product.model';
@@ -25,6 +28,12 @@ export class AdminComponent implements AfterViewInit {
   columns = ['id', 'username', 'email', 'role', 'actions'];
   columnsProduct = ['id', 'title', 'image', 'images', 'description', 'price', 'quantity', 'short_desc', 'cat_id','actions'];
 
+
+
+  orderDataSource = new MatTableDataSource<Order>();
+
+  columnsOrder = ['id','order_created', 'username', 'total', 'state', 'actions'];
+
   @ViewChild(MatSort) sort: MatSort;
 
 
@@ -33,6 +42,7 @@ export class AdminComponent implements AfterViewInit {
     private userService: UserServiceService,
     private snackbarService: SnackbarService,
     private productService:ProductService,
+    private orderService:OrderService,
     private router: Router,
     public dialog: MatDialog
   ) {}
@@ -46,8 +56,13 @@ export class AdminComponent implements AfterViewInit {
     });
 
     this.productService.getAllProducts().subscribe(products =>{
-      this.productDataSource.data = products,
-      console.log(products)
+      this.productDataSource.data = products
+     
+    })
+
+    this.orderService.getOrders().subscribe(orders =>{
+      this.orderDataSource.data = orders
+      console.log(orders)
     })
   }
 
@@ -66,6 +81,25 @@ export class AdminComponent implements AfterViewInit {
     }
 
     )
+  }
+
+  editOrder(order:Order){
+    let dialogRef = this.dialog.open(EditProductComponent, {
+      height: '600px',
+      width: '600px',
+      data:{
+        data: order
+      }
+    });
+  }
+
+
+
+  openAddProduct(){
+    let dialogRef = this.dialog.open(AddProductComponent, {
+      height: '600px',
+      width: '600px'
+    });
   }
 
   editProduct(product:ProductModelServer){

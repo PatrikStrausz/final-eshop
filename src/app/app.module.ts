@@ -29,6 +29,8 @@ import { DeleteProfileComponent } from './components/delete-profile/delete-profi
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { EditOrderComponent } from './components/edit-order/edit-order.component';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     MyOrdersComponent,
     AdminComponent,
     EditProductComponent,
+    AddProductComponent,
+    EditOrderComponent,
     
   ],
   imports: [

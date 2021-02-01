@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { SnackbarService } from './../../services/snackbar.service';
 import { Product, ProductModelServer } from './../../models/product.model';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
@@ -20,9 +22,13 @@ export class EditProductComponent implements OnInit {
     price: new FormControl(''),
     quantity: new FormControl(''),
     short_desc: new FormControl(''),
+    cat_id: new FormControl('')
   });
 
   constructor(
+    private productService:ProductService,
+    private snackbarService:SnackbarService,
+    private router:Router,
     public dialogRef: MatDialogRef<EditProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -30,6 +36,8 @@ export class EditProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    
     this.title.setValue(this.product.title);
     this.image.setValue(this.product.image);
     this.images.setValue(this.product.images);
@@ -37,6 +45,8 @@ export class EditProductComponent implements OnInit {
     this.price.setValue(this.product.price);
     this.quantity.setValue(this.product.quantity);
     this.short_desc.setValue(this.product.short_desc);
+    this.cat_id.setValue(this.product.category)
+    
   }
 
   get title(): FormControl {
@@ -67,15 +77,19 @@ export class EditProductComponent implements OnInit {
     return this.editForm.get('short_desc') as FormControl;
   }
 
+  get cat_id(): FormControl {
+    return this.editForm.get('cat_id') as FormControl;
+  }
+
   onSubmit() {
     const productToSave = new Product(
-      this.product.id,
+    
       this.title.value === '' ? this.product.title : this.title.value,
-      this.product.category,
+      this.cat_id.value === '' ? this.product.category : this.cat_id.value,
       this.description.value === ''
         ? this.product.description
         : this.description.value,
-      this.image.value === '' ? this.product.image : this.image.value,
+      this.image.value === '' ? this.product.image as string: this.image.value,
       this.price.value === '' ? this.product.price : this.price.value,
 
       this.quantity.value === '' ? this.product.quantity : this.quantity.value,
@@ -84,10 +98,19 @@ export class EditProductComponent implements OnInit {
 
       this.short_desc.value === ''
         ? this.product.short_desc
-        : this.short_desc.value
+        : this.short_desc.value,
+        this.product.id,
     );
 
     console.log("PRODUCT TO SAVE ======>>>>>>" 
-    + productToSave.title)
+    + productToSave.price)
+
+
+    this.productService.updateProduct(productToSave).subscribe(
+      _ =>{
+        this.snackbarService.successMessage("Product updated successfuly"),
+        location.reload()
+      }
+    )
   }
 }

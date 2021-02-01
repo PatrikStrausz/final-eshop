@@ -1,3 +1,4 @@
+import { Product } from './../models/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductModelServer, serverResponse } from '../models/product.model';
@@ -31,6 +32,14 @@ export class ProductService {
     return this.http.post(this.SERVER_URL + "/products/delete", product,{responseType: 'text'})
   }
 
+
+  createProduct(product:Product):any{
+    return this.http.post(this.SERVER_URL+"/products/add", product,{responseType: 'text'})
+  }
+
+  updateProduct(product:Product):any{
+    return this.http.post(this.SERVER_URL+"/product/edit", product, {responseType: 'text'})
+  }
 
 
   getCategoryName(id:number):Observable<Categories>{

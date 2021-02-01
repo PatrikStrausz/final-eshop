@@ -20,15 +20,16 @@ export interface ProductModelServer {
   export class Product {
 
     constructor(
-     public id: number,
+    
      public title: string,
-     public category: string,
+     public cat_id: string,
      public description: string,
      public image: string,
      public price: number,
      public quantity: number,
      public images: string,
-     public short_desc:string
+     public short_desc:string,
+     public id?: number,
     ){}
   
   }

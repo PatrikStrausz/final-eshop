@@ -29,6 +29,11 @@ getOrdersByUsername(username:string):Observable<any>{
     catchError(error => this.processHttpError(error)))
 }
 
+getOrders():Observable<any>{
+  return this.http.get<Array<any>>(this.SERVER_URL+"/orders").pipe(
+    catchError(error => this.processHttpError(error)))
+}
+
 
 
 
