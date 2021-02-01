@@ -1,3 +1,4 @@
+import { EditOrderComponent } from './../edit-order/edit-order.component';
 import { OrderService } from './../../services/order.service';
 import { Order } from './../../models/order.model';
 import { AddProductComponent } from './../add-product/add-product.component';
@@ -84,8 +85,8 @@ export class AdminComponent implements AfterViewInit {
   }
 
   editOrder(order:Order){
-    let dialogRef = this.dialog.open(EditProductComponent, {
-      height: '600px',
+    let dialogRef = this.dialog.open(EditOrderComponent, {
+      height: '300px',
       width: '600px',
       data:{
         data: order

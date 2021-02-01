@@ -16,7 +16,7 @@
       <button mat-button color="primary" aria-label="orders" routerLink="/orders">
         <mat-icon>store</mat-icon> My orders
       </button>
-      <button mat-button color="primary" aria-label="orders" routerLink="/admin">
+      <button *ngIf="activeLogin === 'jan'" mat-button color="primary" aria-label="orders" routerLink="/admin">
        ADMIN
       </button>
     </ng-template>

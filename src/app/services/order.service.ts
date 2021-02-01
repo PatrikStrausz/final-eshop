@@ -34,6 +34,11 @@ getOrders():Observable<any>{
     catchError(error => this.processHttpError(error)))
 }
 
+updateOrder(order:Order){
+  return this.http.post(this.SERVER_URL + "/orders/edit", order,{responseType: 'text'} ).pipe(
+    catchError(error => this.processHttpError(error)))
+}
+
 
 
 

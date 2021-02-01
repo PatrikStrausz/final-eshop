@@ -14,6 +14,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatSlideToggleModule,
     MatCheckboxModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSelectModule
   ], 
   exports: [
     MatCardModule,
@@ -48,7 +51,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatSlideToggleModule,
     MatCheckboxModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

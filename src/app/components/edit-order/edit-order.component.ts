@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { SnackbarService } from './../../services/snackbar.service';
+import { OrderService } from 'src/app/services/order.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Order } from './../../models/order.model';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-edit-order',
@@ -7,9 +12,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditOrderComponent implements OnInit {
 
-  constructor() { }
+
+  order:Order
+
+  selected
+
+ 
+
+  editForm = new FormGroup({
+   selectFormControl: new FormControl('', Validators.required)
+  });
+
+  constructor(
+    private orderService:OrderService,
+    private snackbarService:SnackbarService,
+    public dialogRef: MatDialogRef<EditOrderComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      this.order = data.data
+     }
 
   ngOnInit(): void {
+    
   }
+
+
+
+  
+
+  onSubmit() {
+   
+
+    this.order.state = this.selected;
+
+    this.orderService.updateOrder(this.order).subscribe(a=>{
+      
+      this.snackbarService.successMessage("Order successfuly updated")
+    }
+
+      
+    )
+
+  
+  }
+
 
 }

@@ -45,6 +45,7 @@ export class HeaderComponent implements OnInit {
 
    this.activeLogin = this.userService.name
 
+  
     
 
     this.userService.authState$.subscribe(
