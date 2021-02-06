@@ -80,7 +80,13 @@ export class ProfileComponent implements OnInit {
     let dialogRef = this.dialog.open(EditProfileComponent, {
       height: '730px',
       width: '600px',
-    });
+    }).afterClosed().subscribe(_a => this.refresh());
   }
 
+  refresh(){
+
+    this.userService.getAddressByUserId(this.user.id).subscribe(a => this.address = a)
+
+
+  }
 }

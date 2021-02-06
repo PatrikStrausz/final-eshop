@@ -1,3 +1,6 @@
+import { AdminOrdersListComponent } from './components/admin/admin-orders-list/admin-orders-list.component';
+import { AdminProductsListComponent } from './components/admin/admin-products-list/admin-products-list.component';
+import { AdminUserListComponent } from './components/admin/admin-user-list/admin-user-list.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -48,6 +51,15 @@ const routes: Routes = [
       },
       {
         path: 'admin', component: AdminComponent,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin/users', component: AdminUserListComponent,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin/products', component: AdminProductsListComponent,canActivate:[AuthGuard]
+      },
+      {
+        path: 'admin/orders', component: AdminOrdersListComponent,canActivate:[AuthGuard]
       }
     ]
   },

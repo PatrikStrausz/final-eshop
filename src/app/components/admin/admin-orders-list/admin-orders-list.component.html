@@ -1,8 +1,9 @@
+<app-admin></app-admin>
 <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="search..." #input>
   </mat-form-field>
-  <table mat-table [dataSource]="orderDataSource" matSort>
+<table mat-table [dataSource]="orderDataSource" matSort>
     <mat-text-column name="id" headerText="ID"></mat-text-column>
     <ng-container matColumnDef="order_created">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Order created</th>
@@ -27,11 +28,22 @@
       </td>
     </ng-container>
 
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let order">
+        <button mat-icon-button color="primary" (click)="editOrder(order)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      
+      </td>
+    </ng-container>
+ 
   
-    <tr mat-header-row *matHeaderRowDef="columns"></tr>
-    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    <tr mat-header-row *matHeaderRowDef="columnsOrder"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsOrder"></tr>
   </table>
   <mat-paginator [length]="100"
-                [pageSize]="10"
-                [pageSizeOptions]="[10, 25,50, 100]">
-  </mat-paginator>
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

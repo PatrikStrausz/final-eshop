@@ -10,13 +10,13 @@
       <button mat-button color="primary" aria-label="activeLogin" routerLink="/profile">
         <mat-icon>person</mat-icon> {{activeLogin}}
       </button>
-      <button mat-button color="primary" aria-label="Logout" (click)="logout()">
+      <button mat-button color="primary" aria-label="Logout" (click)="logout()" >
         <mat-icon>logout</mat-icon> Logout
       </button>
       <button mat-button color="primary" aria-label="orders" routerLink="/orders">
         <mat-icon>store</mat-icon> My orders
       </button>
-      <button *ngIf="activeLogin === 'jan'" mat-button color="primary" aria-label="orders" routerLink="/admin">
+      <button *ngIf="user.role === 777" mat-button color="primary" aria-label="orders" routerLink="/admin/users">
        ADMIN
       </button>
     </ng-template>

@@ -192,13 +192,15 @@ get name(): string {
   }
 
   processHttpError(error) {
+   
     if (error instanceof HttpErrorResponse) {
+      console.log("ERROR>>>>>>>>"+ error.error)
       if (error.status === 0) {
         this.snackbarService.errorMessage('Server is unreachable');
       } else {
         if (error.status >= 400 && error.status < 500) {
           const message =
-            error.error.errorMessage ?? JSON.parse(error.error).errorMessage;
+            error.error.errorMessage ?? JSON.parse(error.error).error;
           this.snackbarService.errorMessage(message);
         } else {
           this.snackbarService.errorMessage('Server error: ' + error.message);

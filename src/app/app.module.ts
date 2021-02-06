@@ -1,3 +1,4 @@
+
 import { environment } from './../environments/environment';
 import { MaterialModule } from './material.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -31,6 +32,9 @@ import { AdminComponent } from './components/admin/admin.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditOrderComponent } from './components/edit-order/edit-order.component';
+import { AdminUserListComponent } from './components/admin/admin-user-list/admin-user-list.component';
+import { AdminProductsListComponent } from './components/admin/admin-products-list/admin-products-list.component';
+import { AdminOrdersListComponent } from './components/admin/admin-orders-list/admin-orders-list.component';
 
 
 @NgModule({
@@ -53,6 +57,9 @@ import { EditOrderComponent } from './components/edit-order/edit-order.component
     EditProductComponent,
     AddProductComponent,
     EditOrderComponent,
+    AdminUserListComponent,
+    AdminProductsListComponent,
+    AdminOrdersListComponent
     
   ],
   imports: [
@@ -64,6 +71,7 @@ import { EditOrderComponent } from './components/edit-order/edit-order.component
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    
     AppRoutingModule
   
   ],

@@ -152,7 +152,7 @@ editForm = new FormGroup({
       this.usersService.updateAddress(addressToSave).subscribe()
 
   
-      location.reload()
+     
     },
     error => {
      

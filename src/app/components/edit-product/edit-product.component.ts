@@ -54,7 +54,7 @@ export class EditProductComponent implements OnInit {
   }
 
   get image(): FormControl {
-    return this.editForm.get('images') as FormControl;
+    return this.editForm.get('image') as FormControl;
   }
 
   get images(): FormControl {
@@ -89,7 +89,7 @@ export class EditProductComponent implements OnInit {
       this.description.value === ''
         ? this.product.description
         : this.description.value,
-      this.image.value === '' ? this.product.image as string: this.image.value,
+      this.image.value === '' ? this.product.image+"": this.image.value+"",
       this.price.value === '' ? this.product.price : this.price.value,
 
       this.quantity.value === '' ? this.product.quantity : this.quantity.value,
