@@ -1,3 +1,14 @@
+<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+
 <!-- NAVIGATION -->
 <nav id="navigation">
   <!-- container -->
@@ -16,7 +27,6 @@
   <!-- /container -->
 </nav>
 <!-- /NAVIGATION -->
-
 
 
 <!-- SECTION -->
@@ -92,10 +102,10 @@
       <!-- /section title -->
 
       <!-- Products tab & slick -->
-      <div class="col-md-12">
-        <div class="row">
+      <div class="col-md-12" >
+        <div class="row" >
           <div class="col-md-4 col-sm-6" *ngFor="let p of products">
-            <div  class="card my-2">
+            <div  class="card my-2" >
               <img  [src]="p.image" alt="{{p.title}}" width="200px" class="card-img-top" style="cursor: pointer;" (click)="selectProduct(p.id)">
               <div class="card-header">
                 <div class="card-title">
@@ -110,7 +120,7 @@
               <div class="row d-flex justify-content-center border-primary my-3">
                 <div class="col-md-6">
                   <button class="btn btn-outline-primary btn-sm btn-block"
-                  [class.disabled]="p.quantity < 1"
+                  [disabled]="p.quantity < 1"
                   [class.btn-outline-danger]="p.quantity < 1"
                   (click)="AddProduct(p.id)"
                   >
@@ -123,7 +133,11 @@
             </div>
           </div>
         </div>
+      
+
+
       </div>
+      
     </div>
     <!-- /row -->
   </div>

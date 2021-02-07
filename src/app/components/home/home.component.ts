@@ -1,5 +1,6 @@
+import { HeaderComponent } from './../header/header.component';
 import { UserServiceService } from 'src/app/services/user-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { ProductModelServer, serverResponse } from '../../models/product.model';
 
@@ -14,65 +15,46 @@ import { Categories } from 'src/app/models/categories.model';
 export class HomeComponent implements OnInit {
   products: ProductModelServer[] = [];
 
-  
-  categories = []
+  productsTitle: ProductModelServer[] = [];
 
+  search: string;
+
+  categories = [];
 
   constructor(
     private productService: ProductService,
     private router: Router,
     private cartService: CartService,
-    private userService:UserServiceService
+    private userService: UserServiceService
   ) {}
 
   ngOnInit() {
-    this.productService.getAllProducts().subscribe(prods => {
+    this.productService.currentSearch.subscribe((s) => (this.search = s));
 
-     
-      this.products = prods
-     
+    this.productService.getAllProducts().subscribe((prods) => {
+      this.products = prods;
     });
 
-    this.productService.getCategories().subscribe(c=>
-      this.categories = c
-    )
-
-   
-    
-
-
+    this.productService.getCategories().subscribe((c) => (this.categories = c));
   }
 
-
-
-
-
-  updateCategorie(categorie:Categories){
-    if(categorie.title === "Shoes"){
-     
-      this.productService.getCategoriesById(categorie.id).subscribe(c => {this.products = c
-       
-      
-      })
-  
-    
-  console.log( this.userService.prod)
-    }else if(categorie.title === "Electronics"){
-      this.productService.getCategoriesById(categorie.id).subscribe(c => {this.products = c
-       
-      
-      })
+  updateCategorie(categorie: Categories) {
+    if (categorie.title === 'Shoes') {
+      this.productService.getCategoriesById(categorie.id).subscribe((c) => {
+        this.products = c;
+      });
+    } else if (categorie.title === 'Electronics') {
+      this.productService.getCategoriesById(categorie.id).subscribe((c) => {
+        this.products = c;
+      });
     }
   }
 
-ss(){
-  this.productService.getAllProducts().subscribe(prods => {
-
-     
-    this.products = prods
-   
-  });
-}
+  ss() {
+    this.productService.getAllProducts().subscribe((prods) => {
+      this.products = prods;
+    });
+  }
 
   selectProduct(id: number) {
     this.router.navigate(['/product', id]).then();
@@ -82,11 +64,15 @@ ss(){
     this.router.navigate(['/', id]).then();
   }
 
-
   AddProduct(id: number) {
-  
-    this.cartService.AddProductToCart(id)
+   
+    this.cartService.AddProductToCart(id);
+    
   }
+
+  
+
+  
 
   
 }

@@ -1,3 +1,4 @@
+import { ProductModelServer } from './../../models/product.model';
 import { User } from 'src/app/models/user.model';
 
 import { ProductService } from 'src/app/services/product.service';
@@ -5,10 +6,11 @@ import { SnackbarService } from './../../services/snackbar.service';
 
 import { Router } from '@angular/router';
 import { Auth } from 'src/app/models/auth';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CartModelServer } from '../../models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
+
 
 @Component({
   selector: 'app-header',
@@ -22,6 +24,13 @@ export class HeaderComponent implements OnInit {
 
   activeLogin = '';
   user: User;
+
+  products:ProductModelServer[]
+
+  search:string
+
+  
+
 
   constructor(
     public cartService: CartService,
@@ -38,6 +47,12 @@ export class HeaderComponent implements OnInit {
 
     this.activeLogin = this.userService.name;
 
+
+
+
+   
+
+
     this.userService.authState$.subscribe(
       (authState) => (this.authState = authState)
     );
@@ -46,6 +61,10 @@ export class HeaderComponent implements OnInit {
       .getUserByUsername(this.activeLogin)
       .subscribe((u) => (this.user = u));
   }
+
+
+  
+  
 
   logout(auth: Auth): void {
     auth = new Auth(this.activeLogin);
@@ -57,5 +76,24 @@ export class HeaderComponent implements OnInit {
     location.reload()
     localStorage.removeItem('name');
     localStorage.removeItem('token');
+  }
+
+  newSearchInput(){
+    this.productService.changeSearch(this.search)
+  }
+
+ 
+
+  getProducts(title:string){
+
+   
+    this.productService.getProductsByTitle(this.search).subscribe(p =>{
+      this.products = p
+    })
+
+  }
+
+  goToProduct(id:number){
+    this.router.navigateByUrl("/product/"+id)
   }
 }

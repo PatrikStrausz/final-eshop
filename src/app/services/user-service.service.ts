@@ -34,6 +34,8 @@ username: string;
 
   userId:number;
 
+  search:string
+
   prod: ProductModelServer[]
 
   constructor(

@@ -2,7 +2,7 @@ import { Product } from './../models/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductModelServer, serverResponse } from '../models/product.model';
-import { Observable, ObservedValueOf } from 'rxjs';
+import { Observable, ObservedValueOf, BehaviorSubject } from 'rxjs';
 import { Categories } from '../models/categories.model';
 
 @Injectable({
@@ -10,6 +10,15 @@ import { Categories } from '../models/categories.model';
 })
 export class ProductService {
   private SERVER_URL = 'http://localhost:8080';
+
+
+  private searchSource = new BehaviorSubject<string>("")
+currentSearch = this.searchSource.asObservable()
+
+
+  changeSearch(search:string){
+    this.searchSource.next(search)
+  }
 
   constructor(private http: HttpClient) {}
 
@@ -53,6 +62,10 @@ export class ProductService {
 
   getCategoriesById(id:number):Observable<ProductModelServer[]>{
     return this.http.get<ProductModelServer[]>(this.SERVER_URL + "/list/products/category/" + id);
+  }
+
+  getProductsByTitle(title:string):Observable<ProductModelServer[]> {
+    return this.http.get<Array<any>>(this.SERVER_URL+"/list/products/title/"+title)
   }
   
 }

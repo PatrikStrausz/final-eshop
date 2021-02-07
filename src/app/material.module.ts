@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -35,7 +36,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule
   ], 
   exports: [
     MatCardModule,
@@ -52,7 +54,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule
   ]
 })
 export class MaterialModule { }
