@@ -6,26 +6,12 @@
         </mat-card-header>
         <mat-card-content>
           <p>
-            <mat-form-field appearance="fill">
-                <mat-label>E-mail</mat-label>
-                <input matInput required email formControlName="email">
-                <mat-error *ngIf="email.errors?.email || email.errors?.pattern">E-mail is in wrong format</mat-error>            
-      
-              </mat-form-field>
-
-
-              <mat-form-field appearance="fill">
-                <mat-label>Login name</mat-label>
-                <input matInput required formControlName="username">        
-                <mat-error *ngIf="username.errors?.minlength">
-                  Username must have {{username.errors.minlength.requiredLength}} characters
-                  but has only {{username.errors.minlength.actualLength}} characters</mat-error>
-              </mat-form-field>
+         
 
 
               <mat-form-field appearance="fill">
                 <mat-label>Password</mat-label>
-                <input matInput required [type]="hide ? 'password' : 'text'" formControlName="password">
+                <input matInput  [type]="hide ? 'password' : 'text'" formControlName="password">
                 
                 <button type="button" mat-icon-button matSuffix  (click)="hide = !hide" 
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -36,7 +22,7 @@
             <mat-form-field  appearance="fill">
                 <mat-label>Phone: </mat-label>
               
-                <input type = "number" matInput  phone formControlName="phone">
+                <input  matInput   formControlName="phone">
               
                 <mat-error *ngIf="phone.errors?.minlength">
                   Phone must have atleast{{phone.errors.minlength.requiredLength}} characters
@@ -49,31 +35,31 @@
               
             <mat-form-field appearance="fill">
                 <mat-label>Line</mat-label>
-                <input matInput  phone formControlName="line">
+                <input matInput   formControlName="line">
               </mat-form-field>
 
               
             <mat-form-field appearance="fill">
                 <mat-label>City</mat-label>
-                <input matInput  phone formControlName="city">
+                <input matInput   formControlName="city">
               </mat-form-field>
 
               
             <mat-form-field appearance="fill">
                 <mat-label>State</mat-label>
-                <input matInput  phone formControlName="state">
+                <input matInput   formControlName="state">
               </mat-form-field>
         
         
               <mat-form-field appearance="fill">
                 <mat-label>Country</mat-label>
-                <input matInput  phone formControlName="country">
+                <input matInput   formControlName="country">
               </mat-form-field>
 
               
             <mat-form-field appearance="fill">
                 <mat-label>Pincode</mat-label>
-                <input type="number"  matInput  phone formControlName="pincode">
+                <input type="number"  matInput   formControlName="pincode">
                 <mat-error *ngIf="pincode.errors?.minlength">
                   Pincode must have atleast {{pincode.errors.minlength.requiredLength}} characters
                   but has only {{pincode.errors.minlength.actualLength}} characters</mat-error>

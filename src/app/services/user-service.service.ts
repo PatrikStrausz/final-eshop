@@ -151,17 +151,13 @@ get name(): string {
 
   updateAddress(address:Address):any{
     return this.http.post(this.SERVER_URL+"/addresses/update", address, {responseType: 'text'}).pipe(
-      catchError((error) => this.processHttpError(error))
+     
     )
   }
 
   register(user: User): Observable<User> {
     return this.http.post<User>(this.SERVER_URL + '/register', user,).pipe(
-      tap((user) => {
-        this.snackbarService.successMessage(
-          'User ' + user.username + ' successfully registered, you can log in now'
-        );
-      }),
+     
       catchError((error) => this.processHttpError(error))
     );
   }
@@ -176,7 +172,7 @@ get name(): string {
 
   saveUser(user:User): Observable<User>{
 
-    return this.http.post<User>(this.SERVER_URL+"/user/edit", user).pipe(
+    return this.http.post<any>(this.SERVER_URL+"/user/edit", user).pipe(
       catchError(error => this.processHttpError(error))
     );
 

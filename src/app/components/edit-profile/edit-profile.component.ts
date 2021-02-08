@@ -22,11 +22,6 @@ export class EditProfileComponent implements OnInit {
   address:Address
 
 editForm = new FormGroup({
-  username: new FormControl('',Validators.minLength(3)),
-  email: new FormControl('', 
-  [
-   Validators.email,
-   Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")]),
    password: new FormControl(''),
    phone: new FormControl('',Validators.minLength(12)),
    line: new FormControl(''),
@@ -42,18 +37,13 @@ editForm = new FormGroup({
     private snackbarService:SnackbarService) { }
 
 
-  get username(): FormControl {
-    return this.editForm.get('username') as FormControl;
-  }
+
 
   get password(): FormControl {
     return this.editForm.get('password') as FormControl;
   }
 
-  get email(): FormControl {
-    return this.editForm.get('email') as FormControl;
-  }
-
+ 
   get phone(): FormControl {
     return this.editForm.get('phone') as FormControl;
   }
@@ -97,9 +87,8 @@ editForm = new FormGroup({
       
 
 
-      this.username.setValue(this.user.username)
+    
       this.password.setValue("******")
-      this.email.setValue(this.user.email)
       this.phone.setValue(this.address.phone)
       this.line.setValue(this.address.line1)
       this.city.setValue(this.address.city)
@@ -118,9 +107,9 @@ editForm = new FormGroup({
 
 
     const userToSave = new User(
-      this.username.value !== '' ? this.username.value: this.user.username,
+    this.user.username,
       this.password.value !== '' ? this.password.value.trim(): this.user.password,
-      this.email.value !== '' ? this.email.value: this.user.email,
+     this.user.email,
       undefined,
       undefined,
       this.user.id,
@@ -128,21 +117,20 @@ editForm = new FormGroup({
 
 
     const addressToSave = new Address(
-      this.line.value === ''? this.address.line1: this.line.value,
-      this.city.value === ''? this.address.city: this.city.value,
-      this.state.value=== ''? this.address.state: this.state.value,
-      this.country.value=== ''? this.address.country: this.country.value,
-      this.phone.value=== ''? this.address.phone: this.phone.value,
+      this.line.value === ''? this.address.line1+"": this.line.value+"",
+      this.city.value === ''? this.address.city+"": this.city.value+"",
+      this.state.value=== ''? this.address.state+"": this.state.value+"",
+      this.country.value=== ''? this.address.country+"": this.country.value+"",
+      this.phone.value=== ''? this.address.phone+"": this.phone.value+"",
       this.pincode.value=== ''? this.address.pincode: this.pincode.value,
       this.user.id
     )
 
 
 
-    this.usersService.checkUserConflicts(userToSave).subscribe(result => {
-
+    
      
-      this.snackbarService.successMessage(result.success)
+      this.snackbarService.successMessage("Profile updated successfuly")
       localStorage.setItem("name", userToSave.username)
       this.usersService.user = userToSave;
       this.usersService.name = userToSave.username;
@@ -153,11 +141,8 @@ editForm = new FormGroup({
 
   
      
-    },
-    error => {
-     
-      this.snackbarService.errorMessage("Email or username already exists")
-    })
+    
+    
 
   }
 

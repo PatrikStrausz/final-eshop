@@ -1,3 +1,17 @@
-mat-form-field {
-    display: block;
-  }
+.register-wrapper {
+  height: 80%;
+  width: 50%;
+margin: auto;
+  justify-items: center;
+  align-items: center;
+}
+
+.register-wrapper mat-card-header,
+.register-wrapper mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.register-wrapper mat-form-field {
+  display: block;
+}

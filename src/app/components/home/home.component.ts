@@ -47,8 +47,12 @@ export class HomeComponent implements OnInit {
       this.productService.getCategoriesById(categorie.id).subscribe((c) => {
         this.products = c;
       });
-    }
+    }else if (categorie.title === 'Computers') {
+      this.productService.getCategoriesById(categorie.id).subscribe((c) => {
+        this.products = c;
+      });
   }
+}
 
   ss() {
     this.productService.getAllProducts().subscribe((prods) => {

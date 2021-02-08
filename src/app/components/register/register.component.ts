@@ -1,3 +1,4 @@
+import { SnackbarService } from './../../services/snackbar.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -34,7 +35,10 @@ export class RegisterComponent implements OnInit {
   hide = true;
   passwordMessage = "";
 
-  constructor(private usersService: UserServiceService, private router: Router) { }
+  constructor(
+    private usersService: UserServiceService, 
+    private router: Router,
+    private snackbarService:SnackbarService) { }
 
   ngOnInit(): void {
   }
@@ -60,7 +64,12 @@ export class RegisterComponent implements OnInit {
                           undefined, 
                                  );
     this.usersService.register(user).subscribe(u => {
+      this.snackbarService.successMessage(
+        'User ' + user.username + ' successfully registered, you can log in now'
+      );
       this.router.navigateByUrl("/login");
+    },error=>{
+      this.snackbarService.errorMessage("Login or email already exists")
     })
   }
 

@@ -6,7 +6,6 @@ import { Order } from './../../models/order.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject, OnInit, ɵɵqueryRefresh } from '@angular/core';
 
-
 @Component({
   selector: 'app-edit-order',
   templateUrl: './edit-order.component.html',
@@ -39,7 +38,6 @@ export class EditOrderComponent implements OnInit {
       this.snackbarService.successMessage('Order successfuly updated');
     });
 
-   this.dialogRef.close()
-  
+    this.dialogRef.close();
   }
 }

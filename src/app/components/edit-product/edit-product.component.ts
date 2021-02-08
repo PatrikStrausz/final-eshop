@@ -22,13 +22,13 @@ export class EditProductComponent implements OnInit {
     price: new FormControl(''),
     quantity: new FormControl(''),
     short_desc: new FormControl(''),
-    cat_id: new FormControl('')
+    cat_id: new FormControl(''),
   });
 
   constructor(
-    private productService:ProductService,
-    private snackbarService:SnackbarService,
-    private router:Router,
+    private productService: ProductService,
+    private snackbarService: SnackbarService,
+    private router: Router,
     public dialogRef: MatDialogRef<EditProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -36,8 +36,6 @@ export class EditProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    
     this.title.setValue(this.product.title);
     this.image.setValue(this.product.image);
     this.images.setValue(this.product.images);
@@ -45,8 +43,7 @@ export class EditProductComponent implements OnInit {
     this.price.setValue(this.product.price);
     this.quantity.setValue(this.product.quantity);
     this.short_desc.setValue(this.product.short_desc);
-    this.cat_id.setValue(this.product.category)
-    
+    this.cat_id.setValue(this.product.category);
   }
 
   get title(): FormControl {
@@ -83,13 +80,12 @@ export class EditProductComponent implements OnInit {
 
   onSubmit() {
     const productToSave = new Product(
-    
       this.title.value === '' ? this.product.title : this.title.value,
       this.cat_id.value === '' ? this.product.category : this.cat_id.value,
       this.description.value === ''
         ? this.product.description
         : this.description.value,
-      this.image.value === '' ? this.product.image+"": this.image.value+"",
+      this.image.value === '' ? this.product.image + '' : this.image.value + '',
       this.price.value === '' ? this.product.price : this.price.value,
 
       this.quantity.value === '' ? this.product.quantity : this.quantity.value,
@@ -99,18 +95,14 @@ export class EditProductComponent implements OnInit {
       this.short_desc.value === ''
         ? this.product.short_desc
         : this.short_desc.value,
-        this.product.id,
+      this.product.id
     );
 
-    console.log("PRODUCT TO SAVE ======>>>>>>" 
-    + productToSave.price)
+    console.log('PRODUCT TO SAVE ======>>>>>>' + productToSave.price);
 
-
-    this.productService.updateProduct(productToSave).subscribe(
-      _ =>{
-        this.snackbarService.successMessage("Product updated successfuly"),
-        location.reload()
-      }
-    )
+    this.productService.updateProduct(productToSave).subscribe((_) => {
+      this.snackbarService.successMessage('Product updated successfuly'),
+        location.reload();
+    });
   }
 }

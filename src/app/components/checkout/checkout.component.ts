@@ -27,6 +27,9 @@ export class CheckoutComponent implements OnInit {
 
   activeLogin:string;
 
+  toggleBool: boolean=true;
+
+
   constructor(
     private cartService: CartService,
     private orderService: OrderService,
@@ -57,4 +60,13 @@ export class CheckoutComponent implements OnInit {
       return;
     }
   }
+
+  changeEvent(event) {
+    if (event.target.checked) {
+        this.toggleBool= false;
+    }
+    else {
+        this.toggleBool= true;
+    }
+}
 }

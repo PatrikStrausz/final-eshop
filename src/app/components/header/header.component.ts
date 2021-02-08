@@ -11,7 +11,6 @@ import { CartModelServer } from '../../models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -25,12 +24,9 @@ export class HeaderComponent implements OnInit {
   activeLogin = '';
   user: User;
 
-  products:ProductModelServer[]
+  products: ProductModelServer[];
 
-  search:string
-
-  
-
+  search: string = '';
 
   constructor(
     public cartService: CartService,
@@ -47,12 +43,6 @@ export class HeaderComponent implements OnInit {
 
     this.activeLogin = this.userService.name;
 
-
-
-
-   
-
-
     this.userService.authState$.subscribe(
       (authState) => (this.authState = authState)
     );
@@ -62,10 +52,6 @@ export class HeaderComponent implements OnInit {
       .subscribe((u) => (this.user = u));
   }
 
-
-  
-  
-
   logout(auth: Auth): void {
     auth = new Auth(this.activeLogin);
 
@@ -73,27 +59,22 @@ export class HeaderComponent implements OnInit {
       this.snackbarService.successMessage('User logged out');
     });
 
-    location.reload()
+    location.reload();
     localStorage.removeItem('name');
     localStorage.removeItem('token');
   }
 
-  newSearchInput(){
-    this.productService.changeSearch(this.search)
+  newSearchInput() {
+    this.productService.changeSearch(this.search);
   }
 
- 
-
-  getProducts(title:string){
-
-   
-    this.productService.getProductsByTitle(this.search).subscribe(p =>{
-      this.products = p
-    })
-
+  getProducts(title: string) {
+    this.productService.getProductsByTitle(this.search).subscribe((p) => {
+      this.products = p;
+    });
   }
 
-  goToProduct(id:number){
-    this.router.navigateByUrl("/product/"+id)
+  goToProduct(id: number) {
+    this.router.navigateByUrl('/product/' + id);
   }
 }
