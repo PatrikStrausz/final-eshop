@@ -8,4 +8,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 Run `cd src`
 
 ## Start server
-`java -jar eshop-server.jar`
+Inside of `final-eshop\src` run  `java -jar eshop-server.jar`
