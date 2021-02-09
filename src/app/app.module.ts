@@ -13,7 +13,6 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProductComponent } from './components/product/product.component';
-import { ThanksComponent } from './components/thanks/thanks.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
@@ -46,7 +45,6 @@ import { AdminOrdersListComponent } from './components/admin/admin-orders-list/a
     CheckoutComponent,
     HomeComponent,
     ProductComponent,
-    ThanksComponent,
     LoginComponent,
     RegisterComponent,
     HomeLayoutComponent,

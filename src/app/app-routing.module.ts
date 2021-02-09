@@ -13,7 +13,6 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductComponent } from './components/product/product.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ThanksComponent } from './components/thanks/thanks.component';
 import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
@@ -32,9 +31,6 @@ const routes: Routes = [
       },
       {
         path: 'checkout', component: CheckoutComponent,canActivate:[AuthGuard],
-      },
-      {
-        path: 'thankyou', component: ThanksComponent,canActivate:[AuthGuard]
       },
       {
         path: 'login', component: LoginComponent

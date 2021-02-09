@@ -1,3 +1,4 @@
+import { Address } from './../../models/address.model';
 import { Order } from './../../models/order.model';
 import { User } from './../../models/user.model';
 import { Component, OnInit } from '@angular/core';
@@ -25,6 +26,7 @@ export class CheckoutComponent implements OnInit {
 
   username:string
 
+
   activeLogin:string;
 
   toggleBool: boolean=true;
@@ -46,6 +48,8 @@ export class CheckoutComponent implements OnInit {
     this.cartService.cartDataObs$.subscribe((data) => (this.cartData = data));
     this.cartService.cartTotal$.subscribe((total) => (this.cartTotal = total));
    
+
+  
   }
 
   onCheckout() {
